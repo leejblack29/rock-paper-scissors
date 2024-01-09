@@ -10,20 +10,15 @@ function getComputerChoice() {
 
         // Depending on which number is returned, return either "rock", "paper" or "scissors"
         case 0:
-            return "rock";
+            return "Rock";
             break;
         case 1:
-            return "paper";
+            return "Paper";
             break;
         case 2:
-            return "scissors";
+            return "Scissors";
             break;      
     }
-}
-
-
-for (let i = 0; i < 30; i++) {
-    console.log(getComputerChoice());
 }
 
 
