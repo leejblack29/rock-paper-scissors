@@ -65,7 +65,8 @@ function playRound(playerSelection, computerSelection) {
 function game() {
 
   //Declare a variable for the player's and computer's score and set them to 0
-  let playerScore, computerScore = 0;
+  let playerScore = 0;
+  let computerScore = 0;
 
   //Declare a string to store the string describing the result of each round
   let roundResult = "The game has not begun."; 
@@ -134,3 +135,5 @@ function game() {
   Player: ${playerScore} 
   Computer: ${computerScore}`);
 }
+
+game();
