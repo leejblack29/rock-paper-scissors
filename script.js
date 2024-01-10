@@ -109,7 +109,7 @@ function game() {
     roundResult = playRound(playerChoice, getComputerChoice());
 
     //look at the beginning of the round result message -- increment winners score
-    switch (roundResult.substring(8)) {
+    switch (roundResult.substring(0,8)) {
 
       case "You win!":
         playerScore++;
