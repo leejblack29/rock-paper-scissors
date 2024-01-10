@@ -87,7 +87,7 @@ function game() {
       if (playerChoice !== null && playerChoice !== ""){
 
           //Change the input so only the first letter is uppercase
-          playerChoice = playerChoice.charAt(0).toUpperCase() + playerChoice.slice(1);
+          playerChoice = playerChoice.charAt(0).toUpperCase() + playerChoice.slice(1).toLowerCase();
 
           //If the input is valid , set flag to true 
           if (playerChoice === "Rock" || playerChoice === "Paper" || playerChoice === "Scissors") {
