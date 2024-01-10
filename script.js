@@ -61,33 +61,76 @@ function playRound(playerSelection, computerSelection) {
   }
 }
 
-/**
- * Write a NEW function called game(). Use the previous function inside of this one to play a best-of-five game that keeps score and reports a winner or loser at the end.
- * 
-You have not officially learned how to “loop” over code to repeat function calls… if you already know about loops from somewhere else (or if you feel like doing some more learning) 
-feel free to use them. If not, don’t worry! Just call your playRound function 5 times in a row. Loops are covered in the next lesson.
+//Declare a game() function -- plays a best-of-five-rounds match of rock, paper, scissors
+function game() {
 
-At this point you should be using console.log() to display the results of each round and the winner at the end.
+  //Declare a variable for the player's and computer's score and set them to 0
+  let playerScore, computerScore = 0;
 
-Use prompt() to get input from the user. Read the docs here if you need to.
+  //Declare a string to store the string describing the result of each round
+  let roundResult = "The game has not begun."; 
 
-Feel free to re-work your previous functions if you need to. Specifically, you might want to change the return value to something more useful.
+  //Create a while loop which loops until one of the scores is 3 
+  while (playerScore < 3 && computerScore < 3) {
 
-Feel free to create more “helper” functions if you think it would be useful.
-
-*/
-
-//Declare a game() function
-//Declare a variable for the player's score and set to 0
-//Declare a variable for the computer's score and set to 0
-//Declare a string to store the string describing the result of each round
-//Create a while loop which loops until one of the scores is 3 
     //Create a variable to store input
+    let playerChoice = prompt("Rock, Paper, or Scissors?"); 
+
     //Create a flag to check validity of input -- set to false
+    let choiceIsValid = false;
+
     //Create a while loop which loops until valid input is confirmed
-        //If the input is valid, set switch the flag to true 
-        //Otherwise, prompt the user again and store the new message in input variable
+    while (!choiceIsValid) {
+
+        // If the input is not null and not empty, then
+      if (playerChoice !== null && playerChoice !== ""){
+
+          //Change the input so only the first letter is uppercase
+          playerChoice = playerChoice.charAt(0).toUpperCase() + playerChoice.slice(1);
+
+          //If the input is valid , set flag to true 
+          if (playerChoice === "Rock" || playerChoice === "Paper" || playerChoice === "Scissors") {
+            choiceIsValid = true;
+          }
+
+          else {
+            playerChoice = prompt("Your previous input was invalid -- please choose from the following: Rock, Paper, or Scissors?");
+          }
+      }
+      
+      //Otherwise, prompt the user again and store the new message in input variable
+      else {
+        playerChoice = prompt("No input was given -- please choose from the following: Rock, Paper, or Scissors?");
+      }
+    }
+
     //Call playRound() using the input, and getComputerChoice() -- store the result in the earlier created string;
-    //Determine the winner by evaluating the result string -- increment the winner, or neither if it's a tie
+    roundResult = playRound(playerChoice, getComputerChoice());
+
+    //look at the beginning of the round result message -- increment winners score
+    switch (roundResult.substring(8)) {
+
+      case "You win!":
+        playerScore++;
+        break;
+
+      case "You lose":
+        computerScore++;
+        break;
+    }
+
     //Print the result to the console, and the current score
-//Exit the loop and print a string with the final score and result
+    console.log(`${roundResult}.
+    
+    Current Score:
+    Player: ${playerScore}
+    Computer: ${computerScore}`);
+  }
+
+  //Exit the loop and print a string with the final score and result
+  console.log(playerScore === 3 ? "You win!" : "You lose!");
+  console.log(`
+  Final Score: 
+  Player: ${playerScore} 
+  Computer: ${computerScore}`);
+}
