@@ -136,5 +136,5 @@ function game() {
   Computer: ${computerScore}`);
 }
 
-setTimeout(game, 3000);
+setTimeout(game, 4000);
 
