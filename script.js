@@ -64,13 +64,34 @@ function playRound(playerSelection, computerSelection) {
 //Declare a game() function -- plays a best-of-five-rounds match of rock, paper, scissors
 function game() {
 
-  //Declare a variable for the player's and computer's score and set them to 0
   let playerScore = 0;
   let computerScore = 0;
-
-  //Declare a string to store the string describing the result of each round
   let roundResult = "The game has not begun."; 
 
+  const container = document.querySelector("#container");
+  const rockBtn = container.querySelector("#rock");
+  const paperBtn = container.querySelector("#paper");
+  const scissorsBtn = container.querySelector("#scissors");
+  container.addEventListener("click", (event) => {
+    let target = event.target;
+
+    switch (target.id) {
+      case "rock" :
+        console.log("Rock");
+        break;
+      case "paper" :
+        console.log("Paper");
+        break;
+      case "scissors" :
+        console.log("Scissors");
+        break;
+      default:
+        console.log("None")  
+    }
+  })
+
+
+  /** 
   //Create a while loop which loops until one of the scores is 3 
   while (playerScore < 3 && computerScore < 3) {
 
@@ -134,6 +155,8 @@ function game() {
   Final Score: 
   Player: ${playerScore} 
   Computer: ${computerScore}`);
+
+  */
 }
 
 setTimeout(game, 4000);
