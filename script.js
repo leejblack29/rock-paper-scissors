@@ -64,7 +64,6 @@ function game() {
   const container = document.querySelector("#container");
   const results = document.querySelector("#results");
 
-
   container.addEventListener("click", (event) => {
     let target = event.target;
 
@@ -91,7 +90,7 @@ function game() {
       case "You lose":
         computerScore++;
         break;
-      
+
       default:
         break;
     }
@@ -100,78 +99,16 @@ function game() {
       
       Current Score:
       Player: ${playerScore}
-      Computer: ${computerScore}`
-    ;
+      Computer: ${computerScore}`;
 
-
+    if (playerScore === 5 || computerScore === 5) {
+      results.textContent += playerScore === 5 ? "You win!" : "You lose!";
+      results.textContent += `Final Score: 
+      Player: ${playerScore} 
+      Computer: ${computerScore}`;
+    }
   });
 
-  /** 
-  //Create a while loop which loops until one of the scores is 3 
-  while (playerScore < 3 && computerScore < 3) {
-
-    //Create a variable to store input
-    let playerChoice = prompt("Rock, Paper, or Scissors?"); 
-
-    //Create a flag to check validity of input -- set to false
-    let choiceIsValid = false;
-
-    //Create a while loop which loops until valid input is confirmed
-    while (!choiceIsValid) {
-
-        // If the input is not null and not empty, then
-      if (playerChoice !== null && playerChoice !== ""){
-
-          //Change the input so only the first letter is uppercase
-          playerChoice = playerChoice.charAt(0).toUpperCase() + playerChoice.slice(1).toLowerCase();
-
-          //If the input is valid , set flag to true 
-          if (playerChoice === "Rock" || playerChoice === "Paper" || playerChoice === "Scissors") {
-            choiceIsValid = true;
-          }
-
-          else {
-            playerChoice = prompt("Your previous input was invalid -- please choose from the following: Rock, Paper, or Scissors?");
-          }
-      }
-      
-      //Otherwise, prompt the user again and store the new message in input variable
-      else {
-        playerChoice = prompt("No input was given -- please choose from the following: Rock, Paper, or Scissors?");
-      }
-    }
-
-    //Call playRound() using the input, and getComputerChoice() -- store the result in the earlier created string;
-    roundResult = playRound(playerChoice, getComputerChoice());
-
-    //look at the beginning of the round result message -- increment winners score
-    switch (roundResult.substring(0,8)) {
-
-      case "You win!":
-        playerScore++;
-        break;
-
-      case "You lose":
-        computerScore++;
-        break;
-    }
-
-    //Print the result to the console, and the current score
-    console.log(`${roundResult}.
-    
-    Current Score:
-    Player: ${playerScore}
-    Computer: ${computerScore}`);
-  }
-
-  //Exit the loop and print a string with the final score and result
-  console.log(playerScore === 3 ? "You win!" : "You lose!");
-  console.log(`
-  Final Score: 
-  Player: ${playerScore} 
-  Computer: ${computerScore}`);
-
-  */
 }
 
-setTimeout(game, 4000);
+game();
