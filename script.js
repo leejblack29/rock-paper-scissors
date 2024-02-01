@@ -3,10 +3,8 @@
 denoting the computer's choice (either "rock", "paper", or "scissors")
  */
 function getComputerChoice() {
-
   // Evaluate an expression which randomly returns a number between 0 and 2 (inclusive)
   switch (Math.floor(Math.random() * 3)) {
-
     // Depending on which number is returned, return either "rock", "paper" or "scissors"
     case 0:
       return "Rock";
@@ -28,7 +26,6 @@ function getComputerChoice() {
  * spelled correctly with the only the first letter capitalized -- this will be handled in the game() function)
  */
 function playRound(playerSelection, computerSelection) {
-
   // Create a return string for when the player wins
   let youWin = `You win! ${playerSelection} beats ${computerSelection}!`;
 
@@ -38,16 +35,13 @@ function playRound(playerSelection, computerSelection) {
   // Check if playerSelection is equal to computerSelection -- if so, return a string saying it's a tie
   if (playerSelection === computerSelection) {
     return `It's a tie! You both chose ${computerSelection}!`;
-  } 
-  
-  else {
-
+  } else {
     // For each possible playerSelection:
     switch (playerSelection) {
       case "Rock":
         //Check if the computer chose the losing option --
-        return computerSelection === "Scissors" ?
-            // if so, return a string saying the player won
+        return computerSelection === "Scissors"
+          ? // if so, return a string saying the player won
             youWin
           : // Otherwise return a string saying the player lost
             youLose;
@@ -63,10 +57,9 @@ function playRound(playerSelection, computerSelection) {
 
 //Declare a game() function -- plays a best-of-five-rounds match of rock, paper, scissors
 function game() {
-
   let playerScore = 0;
   let computerScore = 0;
-  let roundResult = "The game has not begun."; 
+  let roundResult = "The game has not begun.";
 
   const container = document.querySelector("#container");
 
@@ -74,23 +67,40 @@ function game() {
     let target = event.target;
 
     switch (target.id) {
-      case "rock" :
+      case "rock":
         roundResult = playRound("Rock", getComputerChoice());
         break;
-      case "paper" :
+      case "paper":
         roundResult = playRound("Paper", getComputerChoice());
         break;
-      case "scissors" :
+      case "scissors":
         roundResult = playRound("Scissors", getComputerChoice());
         break;
       default:
-        console.log("No selection made.")  
+        console.log("No selection made.");
     }
 
-    console.log(roundResult);
+    //look at the beginning of the round result message -- increment winners score
+    switch (roundResult.substring(0, 8)) {
+      case "You win!":
+        playerScore++;
+        break;
 
-  })
+      case "You lose":
+        computerScore++;
+        break;
+      
+      default:
+        break;
+    }
 
+    //Print the result to the console, and the current score
+    console.log(`${roundResult}.
+      
+      Current Score:
+      Player: ${playerScore}
+      Computer: ${computerScore}`);
+  });
 
   /** 
   //Create a while loop which loops until one of the scores is 3 
@@ -161,4 +171,3 @@ function game() {
 }
 
 setTimeout(game, 4000);
-
