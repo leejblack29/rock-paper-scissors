@@ -62,6 +62,8 @@ function game() {
   let roundResult = "The game has not begun.";
 
   const container = document.querySelector("#container");
+  const results = document.querySelector("#results");
+
 
   container.addEventListener("click", (event) => {
     let target = event.target;
@@ -77,7 +79,7 @@ function game() {
         roundResult = playRound("Scissors", getComputerChoice());
         break;
       default:
-        console.log("No selection made.");
+        roundResult = "No selection made.";
     }
 
     //look at the beginning of the round result message -- increment winners score
@@ -94,12 +96,14 @@ function game() {
         break;
     }
 
-    //Print the result to the console, and the current score
-    console.log(`${roundResult}.
+    results.textContent = `${roundResult}.
       
       Current Score:
       Player: ${playerScore}
-      Computer: ${computerScore}`);
+      Computer: ${computerScore}`
+    ;
+
+
   });
 
   /** 
