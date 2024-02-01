@@ -69,25 +69,26 @@ function game() {
   let roundResult = "The game has not begun."; 
 
   const container = document.querySelector("#container");
-  const rockBtn = container.querySelector("#rock");
-  const paperBtn = container.querySelector("#paper");
-  const scissorsBtn = container.querySelector("#scissors");
+
   container.addEventListener("click", (event) => {
     let target = event.target;
 
     switch (target.id) {
       case "rock" :
-        console.log("Rock");
+        roundResult = playRound("Rock", getComputerChoice());
         break;
       case "paper" :
-        console.log("Paper");
+        roundResult = playRound("Paper", getComputerChoice());
         break;
       case "scissors" :
-        console.log("Scissors");
+        roundResult = playRound("Scissors", getComputerChoice());
         break;
       default:
-        console.log("None")  
+        console.log("No selection made.")  
     }
+
+    console.log(roundResult);
+
   })
 
 
